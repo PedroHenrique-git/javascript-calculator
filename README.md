@@ -2,4 +2,4 @@
 
 Uma simples calculadora feita usando javascript, html e css
 
-![VISUAL](/imagens/captura.PNG)
+![VISUAL](assets/img/captura.PNG)

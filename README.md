@@ -10,5 +10,9 @@
     </ul>
 </h1>
 
+<p align="left">
+    Clonar projeto: git clone https://github.com/PedroHenrique-git/Calculadora-JavaScript.git
+</p>
+
 
 ![VISUAL](assets/img/captura.PNG)

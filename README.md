@@ -5,7 +5,9 @@
 ![VISUAL](assets/img/captura.PNG)
 
 <h1 align="left">
-    <a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML">🔗 Html</a>
-    <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS">🔗 Css</a>
-    <a href="https://developer.mozilla.org/pt-BR/docs/Aprender/JavaScript">🔗 JavaScript</a>
+    <ul>
+        <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML">🔗 Html</a></li>
+        <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS">🔗 Css</a></li>
+        <li><a href="https://developer.mozilla.org/pt-BR/docs/Aprender/JavaScript">🔗 JavaScript</a></li>
+    </ul>
 </h1>

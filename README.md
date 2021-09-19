@@ -10,9 +10,9 @@ you can see the app online here:
 
 ### Dependencies
 
-[Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
-[Html](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
-[Css](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
+[Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)\
+[Html](https://developer.mozilla.org/pt-BR/docs/Web/HTML)\
+[Css](https://developer.mozilla.org/pt-BR/docs/Web/CSS)\
 
 ### Authors
 

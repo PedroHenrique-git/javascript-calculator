@@ -9,18 +9,32 @@ const calculator = (function () {
     const resolveExpression = (num1, num2, operator) => {
         const n1 = Number(num1);
         const n2 = Number(num2);
+
+        let result = 0;
+
         switch (operator) {
             case '+':
-                return n1 + n2;
+                result = n1 + n2;
+                break;
             case '-':
-                return n1 - n2;
+                result = n1 - n2;
+                break;
             case '*':
-                return n1 * n2;
+                result = n1 * n2;
+                break;
             case '/':
-                return n1 / n2;
+                result = n1 / n2;
+                break;
             default:
-                return;
+                result = 0;
+                break;
         }
+
+        if (!isNaN(result)) {
+            if (String(result).length <= 12) return result;
+            return result.toFixed(8);
+        }
+        return 0;
     };
 
     const calculatorData = {
@@ -30,10 +44,10 @@ const calculator = (function () {
         clearData: function () {
             (this.number1 = ''), (this.number2 = ''), (this.operator = '');
         },
-        clearNumber1: function() {
+        clearNumber1: function () {
             this.number1 = '';
         },
-        clearNumber2: function() {
+        clearNumber2: function () {
             this.number2 = '';
         },
         setNumber1: function (value) {
@@ -62,8 +76,8 @@ const calculator = (function () {
             const targetClasses = target.className.split(' ');
 
             if (
-                ( targetClasses.includes('btn-number') ||
-                targetClasses.includes('btn-dot') ) &&
+                (targetClasses.includes('btn-number') ||
+                    targetClasses.includes('btn-dot')) &&
                 !calculatorData.getOperator()
             ) {
                 calculatorData.setNumber1(target.value);
@@ -71,8 +85,8 @@ const calculator = (function () {
             }
 
             if (
-                ( targetClasses.includes('btn-number') ||
-                targetClasses.includes('btn-dot') ) &&
+                (targetClasses.includes('btn-number') ||
+                    targetClasses.includes('btn-dot')) &&
                 calculatorData.getOperator()
             ) {
                 calculatorData.setNumber2(target.value);
@@ -104,6 +118,13 @@ const calculator = (function () {
                 calculatorData.setOperator(target.value);
             }
 
+            if (
+                targetClasses.includes('btn-exp') &&
+                !calculatorData.getNumber1()
+            ) {
+                calculatorData.setNumber1('0');
+            }
+
             if (targetClasses.includes('btn-equal')) {
                 const result = resolveExpression(
                     calculatorData.getNumber1(),
@@ -116,21 +137,21 @@ const calculator = (function () {
                 );
                 updateVisor(currentExpression, result);
                 calculatorData.clearData();
+                calculatorData.setNumber1(String(result));
             }
 
-            if( targetClasses.includes('btn-clear') ) {
+            if (targetClasses.includes('btn-clear')) {
                 calculatorData.clearData();
                 updateVisor(currentExpression, '');
                 updateVisor(prevExpression, '');
             }
 
-            if( targetClasses.includes('btn-delete') ) {
-                const number1 = calculatorData.getNumber1().slice(0, -1); 
+            if (targetClasses.includes('btn-delete')) {
+                const number1 = calculatorData.getNumber1().slice(0, -1);
                 calculatorData.clearNumber1();
                 calculatorData.setNumber1(String(number1));
                 updateVisor(currentExpression, number1);
             }
-
         });
     }
 

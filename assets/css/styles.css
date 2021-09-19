@@ -50,10 +50,10 @@ html, body {
     border: none;
     cursor: pointer;
     color: #fff;
-    height: 4rem;
-    width: 4rem;
+    height: 5rem;
+    width: 5rem;
     padding: .5rem;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     text-transform: uppercase;
 }
 

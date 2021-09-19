@@ -1,52 +1,142 @@
-(function () {
+const calculator = (function () {
+    const calculator = document.querySelector('.calculator-container');
+    const visor = calculator.querySelector('.calculator-visor');
+    const prevExpression = visor.querySelector('.prev-expression');
+    const currentExpression = visor.querySelector('.current-expression');
 
-    function Calculadora(){
-        return {
+    const updateVisor = (visor, value) => (visor.innerText = value);
 
-            visor: document.querySelector('.resultado'),
-
-            iniciar(){
-                this.cliqueBotoes();
-            },
-
-            fazConta(){
-                try{
-                    let conta = eval(this.visor.value);
-                    this.visor.value = String(conta);
-                }catch(e){
-                    alert('Conta inválida');
-                }
-            },
-
-            cliqueBotoes(){
-                document.addEventListener('click', e => {
-                    const el = e.target;
-                    if(el.classList.contains('btn-num')){
-                        this.adicionaElementosNoVisor(el.innerText); 
-                    }
-                    if(el.classList.contains('btn-op')){
-                        this.adicionaElementosNoVisor(el.innerText);
-                    }
-                    if(el.classList.contains('btn-igual')){
-                        this.fazConta();
-                    }
-                    if(el.classList.contains('btn-clear')){
-                        this.visor.value = '';
-                    }
-                    if(el.classList.contains('btn-apagar')){
-                        let newValue = this.visor.value.slice(0,-1);
-                        this.visor.value = newValue;
-                    }
-                });  
-            },
-
-            adicionaElementosNoVisor(valor){
-                this.visor.value += valor;
-            }
+    const resolveExpression = (num1, num2, operator) => {
+        const n1 = Number(num1);
+        const n2 = Number(num2);
+        switch (operator) {
+            case '+':
+                return n1 + n2;
+            case '-':
+                return n1 - n2;
+            case '*':
+                return n1 * n2;
+            case '/':
+                return n1 / n2;
+            default:
+                return;
         }
+    };
+
+    const calculatorData = {
+        number1: '',
+        number2: '',
+        operator: '',
+        clearData: function () {
+            (this.number1 = ''), (this.number2 = ''), (this.operator = '');
+        },
+        clearNumber1: function() {
+            this.number1 = '';
+        },
+        clearNumber2: function() {
+            this.number2 = '';
+        },
+        setNumber1: function (value) {
+            this.number1 += value;
+        },
+        setNumber2: function (value) {
+            this.number2 += value;
+        },
+        setOperator: function (value) {
+            this.operator = value;
+        },
+        getNumber1: function () {
+            return this.number1;
+        },
+        getNumber2: function () {
+            return this.number2;
+        },
+        getOperator: function () {
+            return this.operator;
+        },
+    };
+
+    function init() {
+        document.addEventListener('click', (e) => {
+            const target = e.target;
+            const targetClasses = target.className.split(' ');
+
+            if (
+                ( targetClasses.includes('btn-number') ||
+                targetClasses.includes('btn-dot') ) &&
+                !calculatorData.getOperator()
+            ) {
+                calculatorData.setNumber1(target.value);
+                updateVisor(currentExpression, calculatorData.getNumber1());
+            }
+
+            if (
+                ( targetClasses.includes('btn-number') ||
+                targetClasses.includes('btn-dot') ) &&
+                calculatorData.getOperator()
+            ) {
+                calculatorData.setNumber2(target.value);
+                updateVisor(currentExpression, calculatorData.getNumber2());
+                updateVisor(
+                    prevExpression,
+                    `${calculatorData.getNumber1()} ${calculatorData.getOperator()}`
+                );
+            }
+
+            if (
+                targetClasses.includes('btn-exp') &&
+                calculatorData.getNumber1() &&
+                calculatorData.getNumber2() &&
+                calculatorData.getOperator()
+            ) {
+                const result = resolveExpression(
+                    calculatorData.getNumber1(),
+                    calculatorData.getNumber2(),
+                    calculatorData.getOperator()
+                );
+                calculatorData.clearData();
+                calculatorData.setNumber1(String(result));
+                calculatorData.setNumber2('');
+                calculatorData.setOperator(target.value);
+            }
+
+            if (targetClasses.includes('btn-exp')) {
+                calculatorData.setOperator(target.value);
+            }
+
+            if (targetClasses.includes('btn-equal')) {
+                const result = resolveExpression(
+                    calculatorData.getNumber1(),
+                    calculatorData.getNumber2(),
+                    calculatorData.getOperator()
+                );
+                updateVisor(
+                    prevExpression,
+                    `${calculatorData.getNumber1()} ${calculatorData.getOperator()} ${calculatorData.getNumber2()} = `
+                );
+                updateVisor(currentExpression, result);
+                calculatorData.clearData();
+            }
+
+            if( targetClasses.includes('btn-clear') ) {
+                calculatorData.clearData();
+                updateVisor(currentExpression, '');
+                updateVisor(prevExpression, '');
+            }
+
+            if( targetClasses.includes('btn-delete') ) {
+                const number1 = calculatorData.getNumber1().slice(0, -1); 
+                calculatorData.clearNumber1();
+                calculatorData.setNumber1(String(number1));
+                updateVisor(currentExpression, number1);
+            }
+
+        });
     }
 
-    const calculadora = Calculadora();
-    calculadora.iniciar();
-
+    return {
+        init,
+    };
 })();
+
+calculator.init();

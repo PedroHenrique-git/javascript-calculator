@@ -1,19 +1,23 @@
-# Calculator JavaScript
+# javascript calculator
 
-<p align="left">
- a simple calculator developed using html, css and a little bit of javaScript to implement the calculator functionality
-</p>
+## Description
 
-## Built With
+a simple calculator developer in javascript
 
-* [Html](https://developer.mozilla.org/pt-BR/docs/Web/HTML) 
-* [Css](https://developer.mozilla.org/pt-BR/docs/Web/CSS) 
-* [JavaScript](https://developer.mozilla.org/pt-BR/docs/Aprender/JavaScript)
+### Getting started
 
-## Images
+you can see the app online here:
 
-![VISUAL](assets/img/captura.PNG)
+### Dependencies
 
-## License
+[Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
+[Html](https://developer.mozilla.org/pt-BR/docs/Web/HTML)
+[Css](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+### Authors
+
+Pedro
+
+### License
+
+This project is licensed under the [MIT] License - see the [LICENSE.md](LICENSE) file for details

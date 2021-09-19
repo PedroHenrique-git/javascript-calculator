@@ -1,0 +1,24 @@
+{
+  "name": "Calculadora-JavaScript",
+  "version": "1.0.0",
+  "description": "a simple calculator developer in javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx prettier --write ./assets/js/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroHenrique-git/Calculadora-JavaScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroHenrique-git/Calculadora-JavaScript/issues"
+  },
+  "homepage": "https://github.com/PedroHenrique-git/Calculadora-JavaScript#readme",
+  "devDependencies": {
+    "prettier": "2.4.1"
+  }
+}

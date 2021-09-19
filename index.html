@@ -2,51 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="icon" type="imagem/png" href="assets//img/meufavicon.png" />
-    <title>Calculadora JavaScript</title>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+    <script defer src="./assets/js/main.js"></script>
+    <title>Javascript calculator</title>
 </head>
 <body>
-    <section class="visor">
-        <input type="text" class="resultado">
-    </section>
-
-    <section class="calculadora">
-        <table>
-            <tr>
-                <td><button class="btn btn-clear" value="c">C</button></td>
-                <td><button class="btn btn-num" value="(">(</button></td>
-                <td><button class="btn btn-num" value=")">)</button></td>
-                <td><button class="btn btn-num" value="/">/</button></td>
-            </tr>
-            <tr>
-                <td><button class="btn btn-num" value="7">7</button></td>
-                <td><button class="btn btn-num" value="8">8</button></td>
-                <td><button class="btn btn-num" value="9">9</button></td>
-                <td><button class="btn btn-num" value="*">*</button></td>
-            </tr>
-            <tr>
-                <td><button class="btn btn-num" value="4">4</button></td>
-                <td><button class="btn btn-num" value="5">5</button></td>
-                <td><button class="btn btn-num" value="6">6</button></td>
-                <td><button class="btn btn-num" value="+">+</button></td>
-            </tr>
-            <tr>
-                <td><button class="btn btn-num" value="1">1</button></td>
-                <td><button class="btn btn-num" value="2">2</button></td>
-                <td><button class="btn btn-num" value="3">3</button></td>
-                <td><button class="btn btn-num" value="-">-</button></td>
-            </tr>
-            <tr>
-                <td><button class="btn btn-num" value=".">.</button></td>
-                <td><button class="btn btn-num" value="0">0</button></td>
-                <td><button class="btn btn-apagar" value="<<"> << </button></td>
-                <td><button class="btn btn-igual" value="=">=</button></td>
-            </tr>
-        </table>
-    </section>
-
-    <script src="assets/js/main.js"></script>
+    <main class="principal-container">
+        <section class="calculator-container">
+            <!--visor-->
+            <div class="calculator-visor">
+                <div class="prev-expression"></div>
+                <div class="current-expression">0</div>
+            </div>
+            <!--first line-->
+            <button value="1" class="btn btn-number">1</button>
+            <button value="2" class="btn btn-number">2</button>
+            <button value="3" class="btn btn-number">3</button>
+            <button value="+" class="btn btn-opr btn-exp">+</button>
+            <!--second line-->
+            <button value="4" class="btn btn-number">4</button>
+            <button value="5" class="btn btn-number">5</button>
+            <button value="6" class="btn btn-number">6</button>
+            <button value="-" class="btn btn-opr btn-exp">-</button>
+            <!--third line-->
+            <button value="7" class="btn btn-number">7</button>
+            <button value="8" class="btn btn-number">8</button>
+            <button value="9" class="btn btn-number">9</button>
+            <button value="*" class="btn btn-opr btn-exp">x</button>
+            <!--fourth line-->
+            <button value="." class="btn btn-opr btn-dot">.</button>
+            <button value="0" class="btn btn-number">0</button>
+            <button value="del" class="btn btn-delete">del</button>
+            <button value="/" class="btn btn-opr btn-exp">/</button>
+            <button value="clear" class="btn btn-clear">c</button>
+            <button value="=" class="btn btn-equal">=</button>
+        </section>
+    </main> 
 </body>
 </html>

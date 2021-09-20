@@ -75,20 +75,37 @@ const calculator = (function () {
             const target = e.target;
             const targetClasses = target.className.split(' ');
 
-            if (
+            const isFirstNumber =
                 (targetClasses.includes('btn-number') ||
                     targetClasses.includes('btn-dot')) &&
-                !calculatorData.getOperator()
-            ) {
+                !calculatorData.getOperator();
+
+            const isOperatorWithoutNumber =
+                targetClasses.includes('btn-exp') &&
+                !calculatorData.getNumber1();
+
+            const isSecondNumber =
+                (targetClasses.includes('btn-number') ||
+                    targetClasses.includes('btn-dot')) &&
+                calculatorData.getOperator();
+
+            const isSum =
+                targetClasses.includes('btn-exp') &&
+                calculatorData.getNumber1() &&
+                calculatorData.getNumber2() &&
+                calculatorData.getOperator();
+
+            const isEqual = targetClasses.includes('btn-equal');
+            const isClear = targetClasses.includes('btn-clear');
+            const isDelete = targetClasses.includes('btn-delete');
+            const isOperator = targetClasses.includes('btn-exp');
+
+            if (isFirstNumber) {
                 calculatorData.setNumber1(target.value);
                 updateVisor(currentExpression, calculatorData.getNumber1());
             }
 
-            if (
-                (targetClasses.includes('btn-number') ||
-                    targetClasses.includes('btn-dot')) &&
-                calculatorData.getOperator()
-            ) {
+            if (isSecondNumber) {
                 calculatorData.setNumber2(target.value);
                 updateVisor(currentExpression, calculatorData.getNumber2());
                 updateVisor(
@@ -97,12 +114,7 @@ const calculator = (function () {
                 );
             }
 
-            if (
-                targetClasses.includes('btn-exp') &&
-                calculatorData.getNumber1() &&
-                calculatorData.getNumber2() &&
-                calculatorData.getOperator()
-            ) {
+            if (isSum) {
                 const result = resolveExpression(
                     calculatorData.getNumber1(),
                     calculatorData.getNumber2(),
@@ -114,18 +126,15 @@ const calculator = (function () {
                 calculatorData.setOperator(target.value);
             }
 
-            if (targetClasses.includes('btn-exp')) {
+            if (isOperator) {
                 calculatorData.setOperator(target.value);
             }
 
-            if (
-                targetClasses.includes('btn-exp') &&
-                !calculatorData.getNumber1()
-            ) {
+            if (isOperatorWithoutNumber) {
                 calculatorData.setNumber1('0');
             }
 
-            if (targetClasses.includes('btn-equal')) {
+            if (isEqual) {
                 const result = resolveExpression(
                     calculatorData.getNumber1(),
                     calculatorData.getNumber2(),
@@ -140,13 +149,13 @@ const calculator = (function () {
                 calculatorData.setNumber1(String(result));
             }
 
-            if (targetClasses.includes('btn-clear')) {
+            if (isClear) {
                 calculatorData.clearData();
                 updateVisor(currentExpression, '');
                 updateVisor(prevExpression, '');
             }
 
-            if (targetClasses.includes('btn-delete')) {
+            if (isDelete) {
                 const number1 = calculatorData.getNumber1().slice(0, -1);
                 calculatorData.clearNumber1();
                 calculatorData.setNumber1(String(number1));
